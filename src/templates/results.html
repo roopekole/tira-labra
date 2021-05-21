@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container my-5">
+    <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+            <canvas id="canvas" width="256" height="256" style="{{canvas_map}}"></canvas>
+            <p>{{algorithms}}</p>
+            <br/>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+                <a class="btn btn-danger btn-lg px-4" href="{{url_for('index')}}" role="button">Back</a>
+            </div>
+        </div>
+        <div class="col-lg-4 p-3 p-lg-5 pt-lg-3">
+            <p>Something</p>
+        </div>
+    </div>
+</div>
+<script>
+        function drawPath(ctx){
+            drawCoordinates({{x_start}},{{y_start}},"#0d6efd",ctx,"start");
+            drawCoordinates({{x_end}},{{y_end}},"#dc3545",ctx,"end");
+            var coords = {{route|tojson}};
+            coords.forEach(coord => drawPoint(coord[0], coord[1], ctx));
+        }
+        function drawPoint(x,y,ctx) {
+            ctx.fillStyle = "#dc3545";
+            ctx.beginPath();
+            ctx.fillRect(x, y, 2, 2);
+        }
+        function drawCoordinates(x,y,color,ctx,point){
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.fillRect(x, y, 5, 5);
+            ctx.font = "10px Arial";
+            ctx.fillText(point, x+5, y+5);
+        }
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.onload = drawPath(ctx);
+</script>
+
+{% endblock %}

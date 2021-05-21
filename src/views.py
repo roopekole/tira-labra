@@ -27,7 +27,7 @@ def process_selected_map():
     map_id = request.form["map_select"]
 
     unzip_file.download_and_unzip(map_id)
-    path = "example/" + map_id
+    path = "maps/" + map_id
     with open(path, "r") as map:
         data = map.read().splitlines()
 
@@ -40,14 +40,22 @@ def process_selected_map():
     if form.ida.data:
         ida = "IDA*"
 
-    print(ida)
-    print(jps)
 
     algorithms = ida + " " + jps
 
-    return render_template("select.html", map_id=map_id, map=data, algorithms=algorithms)
+    canvas_map = "background:url(https://movingai.com/benchmarks/street/" + map_id.replace(".map", ".png") + ")"
+    test_route = [[10, 10], [11, 11], [12, 12], [13, 13], [14, 14], [15, 15], [15, 16], [15, 17], [15, 18],
+                  [15, 19], [15, 20], [15, 21], [15, 22], [15, 23], [15, 24], [16, 24], [17, 24], [18, 24],
+                  [19, 24], [20, 24], [21, 24], [22, 24], [23, 24], [24, 24],[24,25], [24, 26], [24,27], [24,28], [24,29],
+                  [24,30], [24,31], [24,32], [24,33], [24,34], [24,35], [24,36], [24,37], [24,38], [24,39], [24,40], [24,41],
+                  [24,42], [24,43], [24,44], [24,45], [24,46], [24,47], [24,48], [24,49], [24,50], [24,51], [24,52], [24,53],
+                  [24,54]]
+
+    return render_template("results.html", route=test_route, canvas_map=canvas_map, map=data,
+                           algorithms=algorithms, x_start = x_start, y_start = y_start, x_end = x_end,
+                           y_end = y_end)
 
 
 @app.route("/select/<map_id>", methods=["GET"])
 def select_parameters(map_id):
-    return render_template("select.html", map_id = map_id)
+    return render_template("results.html", map_id = map_id)
