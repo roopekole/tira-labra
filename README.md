@@ -4,7 +4,7 @@ Lab project: data structures and algorithms, University of Helsinki
 
 ### Weekly reports (in Finnish)
 - [Week 1](docs/week_reports/w1.md)
-- Week 2
+- [Week 2](docs/week_reports/w2.md)
 - Week 3
 - Week 4
 - Week 5
@@ -12,3 +12,90 @@ Lab project: data structures and algorithms, University of Helsinki
 
 ### Documentation
 - [Requirement specification](docs/requirements.md)
+- [Installation guide](docs/installation_guide.md)
+
+### Get started
+
+See [Installation guide](docs/installation_guide.md) for more details
+
+1. Initiate the virtual environment
+```bash
+
+python -m venv venv
+
+source venv/Scripts/activate
+```
+
+
+
+2. Install dependencies:
+
+
+```bash
+
+pip install -r requirements.txt
+
+```
+
+
+
+
+3. Run the app:
+
+
+```bash
+
+flask run
+
+```
+
+
+### Unit testing and test coverage
+
+1. Perform unit testing:
+
+
+```bash
+
+pytest
+
+```
+
+
+
+2. Run the test coverage:
+
+
+```bash
+
+coverage run --branch -m pytest
+
+```
+
+
+
+3. Generate test coverage report:
+
+
+```
+bash
+
+coverage report -m
+```
+
+
+
+Report is generated to *htmlcov* directory. 
+
+Configurations are set in file [.coveragerc](https://github.com/roopekole/ohte-harjoitustyo/blob/master/app/.coveragerc).
+
+### Code quality analysis (PyLint)
+
+1. Perform code quality analysis for source code:
+```bash
+
+pylint src
+
+```
+
+2. Change configurations by altering
