@@ -2,3 +2,5 @@ venv/
 __pycache__/
 .idea/
 maps/
+.coverage
+src/tests/.coverage
