@@ -5,7 +5,7 @@ Lab project: data structures and algorithms, University of Helsinki
 ### Weekly reports (in Finnish)
 - [Week 1](docs/week_reports/w1.md)
 - [Week 2](docs/week_reports/w2.md)
-- Week 3
+- [Week 3](docs/week_reports/w3.md)
 - Week 4
 - Week 5
 - Week 6
@@ -77,10 +77,10 @@ coverage run --branch -m pytest
 3. Generate test coverage report:
 
 
-```
-bash
+```bash
 
 coverage report -m
+
 ```
 
 

@@ -1,5 +1,5 @@
 import sys
-from src.data_structures import graph
+from src.data_structures import heap
 
 
 def jps(start_x, start_y, end_x, end_y, map):

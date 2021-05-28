@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="col-lg-4 p-3 p-lg-5 pt-lg-3">
-            <p>Something</p>
+            <p>{{route}}</p>
         </div>
     </div>
 </div>
@@ -22,12 +22,12 @@
             drawCoordinates({{x_start}},{{y_start}},"#0d6efd",ctx,"start");
             drawCoordinates({{x_end}},{{y_end}},"#dc3545",ctx,"end");
             var coords = {{route|tojson}};
-            coords.forEach(coord => drawPoint(coord[0], coord[1], ctx));
+            coords.forEach(coord => drawPoint(coord[1], coord[0], ctx));
         }
         function drawPoint(x,y,ctx) {
             ctx.fillStyle = "#dc3545";
             ctx.beginPath();
-            ctx.fillRect(x, y, 2, 2);
+            ctx.fillRect(x, y, 1, 1);
         }
         function drawCoordinates(x,y,color,ctx,point){
             ctx.fillStyle = color;
