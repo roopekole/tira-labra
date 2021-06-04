@@ -23,6 +23,8 @@ Lab project: data structures and algorithms, University of Helsinki
 
 See [Installation guide](docs/installation_guide.md) for more details
 
+See [User manual] for using the application
+
 1. Initiate the virtual environment
 ```bash
 
