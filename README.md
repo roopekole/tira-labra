@@ -15,6 +15,8 @@ Lab project: data structures and algorithms, University of Helsinki
 ### Documentation
 - [Requirement specification](docs/requirements.md)
 - [Installation guide](docs/installation_guide.md)
+- [User manual](docs/user_manual.md)
+- [Testing document](docs/testing_document.md)
 
 ### Known issues
 [Check the issues in GitHub](https://github.com/roopekole/tira-labra/issues)
