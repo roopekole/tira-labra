@@ -1,18 +1,23 @@
 ﻿# Aineopintojen harjoitustyö: tietorakenteet ja algoritmit
+
 Aineopintojen harjoitustyö: tietorakenteet ja algoritmit, Helsingin yliopisto
+
 Lab project: data structures and algorithms, University of Helsinki
 
 ### Weekly reports (in Finnish)
 - [Week 1](docs/week_reports/w1.md)
 - [Week 2](docs/week_reports/w2.md)
 - [Week 3](docs/week_reports/w3.md)
-- Week 4
+- [Week 4](docs/week_reports/w4.md)
 - Week 5
 - Week 6
 
 ### Documentation
 - [Requirement specification](docs/requirements.md)
 - [Installation guide](docs/installation_guide.md)
+
+### Known issues
+[Check the issues in GitHub](https://github.com/roopekole/tira-labra/issues)
 
 ### Get started
 
@@ -49,6 +54,8 @@ flask run
 
 ```
 
+
+You may also run the algorithms without the Flask UI. There's a simple driver code `driver_code.py` in module `src.algorithms` that allow you to verify the results on the input map defined in the driver code.
 
 ### Unit testing and test coverage
 

@@ -1,5 +1,7 @@
 import unittest
-from src.algorithms.a_star import astar, euc_dist_heuristic as edh
+from src.algorithms.a_star import astar
+from src.algorithms.path_find_utilities import euc_dist_heuristic as edh
+
 
 class TestAStar(unittest.TestCase):
 
@@ -27,9 +29,9 @@ class TestAStar(unittest.TestCase):
                ["@", ".", "@", ".", "@"],
                ["@", ".", ".", ".", "@"],
                ["@", "@", "@", "@", "@"]]
-        start = (1,1)
-        end = (1,3)
-        self.assertEqual(astar(map,start,end, len(map)), [(1, 1), (2, 1), (3, 2), (2, 3), (1, 3)])
+        start = (1 ,1)
+        end = (1 ,3)
+        self.assertEqual(astar(map, start, end, 1)[0], [(1, 1), (2, 1), (3, 2), (2, 3), (1, 3)])
 
     def test_a_star_simple_mix_map2(self):
         map = [["@", "@", "@", "@", "@"],
@@ -37,9 +39,9 @@ class TestAStar(unittest.TestCase):
                ["@", ".", "@", ".", "@"],
                [".", "@", ".", ".", "@"],
                ["@", "@", "@", "@", "@"]]
-        start = (3,0)
-        end = (1,3)
-        self.assertEqual(astar(map,start,end, len(map)), [(3, 0), (2, 1), (3, 2), (2, 3), (1, 3)])
+        start = (3, 0)
+        end = (1, 3)
+        self.assertEqual(astar(map, start, end, 1)[0], [(3, 0), (2, 1), (3, 2), (2, 3), (1, 3)])
 
     def test_a_star_simple_diagonal(self):
         map = [[".", ".", ".", ".", "."],
@@ -47,9 +49,9 @@ class TestAStar(unittest.TestCase):
                [".", ".", ".", ".", "."],
                [".", ".", ".", ".", "."],
                [".", ".", ".", ".", "."]]
-        start = (0,0)
-        end = (4,4)
-        self.assertEqual(astar(map,start,end, len(map)), [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)])
+        start = (0, 0)
+        end = (4, 4)
+        self.assertEqual(astar(map, start, end, 1)[0], [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)])
 
     def test_a_star_simple_direct_line(self):
         map = [[".", ".", ".", ".", "."],
@@ -57,9 +59,9 @@ class TestAStar(unittest.TestCase):
                [".", ".", ".", ".", "."],
                [".", ".", ".", ".", "."],
                [".", ".", ".", ".", "."]]
-        start = (3,0)
-        end = (3,4)
-        self.assertEqual(astar(map,start,end, len(map)), [(3, 0), (3, 1), (3, 2), (3, 3), (3, 4)])
+        start = (3, 0)
+        end = (3, 4)
+        self.assertEqual(astar(map, start, end, 1)[0], [(3, 0), (3, 1), (3, 2), (3, 3), (3, 4)])
 
     def test_a_star_no_way_out(self):
         map = [[".", ".", ".", ".", "."],
@@ -69,7 +71,7 @@ class TestAStar(unittest.TestCase):
                [".", ".", ".", ".", "."]]
         start = (2, 2)
         end = (0, 0)
-        self.assertIsNone(astar(map, start, end, len(map)))
+        self.assertIsNone(astar(map, start, end, 1))
 
     def test_a_star_single_way_out(self):
         map = [[".", ".", ".", ".", "."],
@@ -79,11 +81,11 @@ class TestAStar(unittest.TestCase):
                [".", ".", ".", ".", "."]]
         start = (2, 2)
         end = (0, 0)
-        self.assertEqual(astar(map, start, end, len(map)), [(2, 2), (3, 3), (2, 4), (1, 4), (0, 3), (0, 2), (0, 1), (0, 0)])
+        self.assertEqual(astar(map, start, end, 1)[0], [(2, 2), (3, 3), (2, 4), (1, 4), (0, 3), (0, 2), (0, 1), (0, 0)])
 
     def test_a_star_big_diagonal(self):
         n = 999
         map = [["."] * n] * n
         start = (n, n)
         end = (0, 0)
-        self.assertEqual(len(astar(map, start, end, len(map))),1000)
+        self.assertEqual(len(astar(map, start, end, 1)[0]), 1000)
