@@ -9,8 +9,9 @@ Lab project: data structures and algorithms, University of Helsinki
 - [Week 2](docs/week_reports/w2.md)
 - [Week 3](docs/week_reports/w3.md)
 - [Week 4](docs/week_reports/w4.md)
-- Week 5
+- [Week 5](docs/week_reports/w5.md)
 - Week 6
+- Final submission
 
 ### Documentation
 - [Requirement specification](docs/requirements.md)
