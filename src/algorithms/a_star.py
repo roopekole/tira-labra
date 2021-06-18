@@ -10,6 +10,7 @@ def astar(graph, start, end, dijkstra):
         graph: two dimensional list with characters representing walls and floor - remember to adjust the wall constant
         start:
         end:
+        dijkstra: Multiplier that effectively turns the A* to Dijkstra by nullifying the euclidean heuristic
 
     Returns: cheapest path between start and goal found by A* algorithm utilizing euclidean heuristic - none if no path.
             Also return the runtime in milliseconds and iterations (triple)

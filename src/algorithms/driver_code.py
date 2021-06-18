@@ -1,4 +1,4 @@
-from src.algorithms import a_star, jps
+from algorithms import a_star, jps
 map = [[".", ".", ".", ".", "."],
                [".", "@", "@", "@", "."],
                [".", "@", ".", "@", "."],

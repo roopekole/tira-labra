@@ -53,7 +53,6 @@ def jps(graph, start, end):
                 heapq.heappush(open_set, (f_score[jump_point], jump_point))
 
 
-
 def get_full_path(path):
     """
 
@@ -230,7 +229,7 @@ def jump(current_x, current_y, direction_x, direction_y, graph, end):
                     or not block(valid_new_x, new_y, direction_x, -1, graph)
                     and block(valid_new_x, new_y, 0, -1, graph)
                 ):
-                    return (valid_new_x, new_y)
+                    return valid_new_x, new_y
 
                 valid_new_x += direction_x
 
