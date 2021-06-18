@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 class Heap:
     """
     Custom min heap implementation of the priority queue. This data structure is used in the project to
@@ -50,8 +51,7 @@ class Heap:
             if parent_value <= self.heap[index]:
                 break
 
-            self.heap[parent_index], self.heap[index] = \
-                self.heap[index], self.heap[parent_index]
+            self.heap[parent_index], self.heap[index] = self.heap[index], self.heap[parent_index]
 
             index = parent_index
 
@@ -113,3 +113,4 @@ class Heap:
             return None, default_value
 
         return child_index, self.heap[child_index]
+    

@@ -1,4 +1,6 @@
-import heapq, time
+#!/usr/bin/python3
+import time
+from src.data_structures.heap import Heap
 from src.algorithms.path_find_utilities import WALL, MOVEMENTS, reconstruct_path, euc_dist_heuristic
 
 
@@ -19,15 +21,16 @@ def astar(graph, start, end, dijkstra):
     current_time = round(time.time() * 1000)
     iterations = 0
 
-    open_set = []
+    open_set = Heap()
     came_from = {}
     g_score = {start: 0}
     f_score = {start: dijkstra * euc_dist_heuristic(start, end)}
-    heapq.heappush(open_set, (f_score[start], start))
+
+    open_set.push((f_score[start], start))
     close_set = set()
 
     while open_set:
-        current = heapq.heappop(open_set)[1]
+        current = open_set.pop()[1]
 
         # Goal found - collect and return the path
         if current == end:
@@ -56,8 +59,8 @@ def astar(graph, start, end, dijkstra):
                 continue
 
             # Part of the cheapest path. Record the precedence and push the neighbor to queue
-            if tentative_g_score < g_score.get(neighbor, 0) or neighbor not in [nb[1] for nb in open_set]:
+            if tentative_g_score < g_score.get(neighbor, 0) or neighbor not in [nb[1] for nb in open_set.heap]:
                 came_from[neighbor] = current
                 g_score[neighbor] = tentative_g_score
                 f_score[neighbor] = tentative_g_score + dijkstra * euc_dist_heuristic(neighbor, end)
-                heapq.heappush(open_set, (f_score[neighbor], neighbor))
+                open_set.push((f_score[neighbor], neighbor))

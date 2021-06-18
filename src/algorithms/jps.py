@@ -1,4 +1,6 @@
-import time, heapq
+#!/usr/bin/python3
+import time
+from src.data_structures.heap import Heap
 from src.algorithms.path_find_utilities import MOVEMENTS, reconstruct_path, euc_dist_heuristic, block
 
 
@@ -17,16 +19,17 @@ def jps(graph, start, end):
     current_time = round(time.time() * 1000)
     iterations = 0
 
-    open_set = []
+    open_set = Heap()
     came_from = {}
     close_set = set()
     g_score = {start: 0}
     f_score = {start: euc_dist_heuristic(start, end)}
 
-    heapq.heappush(open_set, (f_score[start], start))
+    #heapq.heappush(open_set, (f_score[start], start))
+    open_set.push((f_score[start], start))
 
     while open_set:
-        current = heapq.heappop(open_set)[1]
+        current = open_set.pop()[1]
         if current == end:
             path = reconstruct_path(start, came_from, current)
             runtime = round(time.time() * 1000) - current_time
@@ -46,11 +49,11 @@ def jps(graph, start, end):
             tentative_g_score = g_score[current] + euc_dist_heuristic(current, jump_point)
 
             # Part of the cheapest path. Record the precedence and push the jump point to queue
-            if tentative_g_score < g_score.get(jump_point, 0) or jump_point not in [jp[1] for jp in open_set]:
+            if tentative_g_score < g_score.get(jump_point, 0) or jump_point not in [jp[1] for jp in open_set.heap]:
                 came_from[jump_point] = current
                 g_score[jump_point] = tentative_g_score
                 f_score[jump_point] = tentative_g_score + euc_dist_heuristic(jump_point, end)
-                heapq.heappush(open_set, (f_score[jump_point], jump_point))
+                open_set.push((f_score[jump_point], jump_point))
 
 
 def get_full_path(path):

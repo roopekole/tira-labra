@@ -1,9 +1,9 @@
+#!/usr/bin/python3
 from flask import render_template, request, flash
 from src import app
 from src.forms import MapForm
 from src.utilities import movingai_parser, process_map_file
-from src.algorithms import a_star
-from src.algorithms import jps
+from src.algorithms import a_star, jps
 
 @app.route("/", methods=["GET"])
 def index(error=None):
@@ -70,6 +70,7 @@ def process_selected_map():
     if not algorithm_results:
         error += "No algorithm was selected."
         return index(error)
+
 
     canvas_map = "background:url(https://movingai.com/benchmarks/street/" + \
                  map_id.replace(".map", ".png") + ")"

@@ -4,3 +4,5 @@ __pycache__/
 maps/
 .coverage
 src/tests/.coverage
+*.pyc
+.cache/
