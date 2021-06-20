@@ -27,4 +27,6 @@ The table illustrates the pathfinding runtime in milliseconds and iterations the
 
 User may return to start by pressing _Back_ button and run the comparison with different parameter selection.
 
+### Testing
+See [testing document](./testing_document.md).
 

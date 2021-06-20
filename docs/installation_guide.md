@@ -1,6 +1,6 @@
 # Installation manual
 
-_Installation manual follows a process utilizing BASH (e.g. GitBash or other BASH emulator) in Windows_ 
+Installation manual follows a process utilizing BASH (e.g. GitBash or other BASH emulator) in Windows 
 
 ## Local installation
 
@@ -8,7 +8,7 @@ Local machine requires
 
 - python3.x (with pip and venv)
 
-_In order to run the below commands python3.x need to be configured in the Windows environment variables. This guide assumes that command python is configured as environment variable_
+In order to run the below commands python3.x need to be configured in the Windows environment variables. This guide assumes that command python is configured as environment variable
 
 ### Installation guide
 
