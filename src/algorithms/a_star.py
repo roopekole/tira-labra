@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import time
 from src.data_structures.heap import Heap
-from src.algorithms.path_find_utilities import WALL, MOVEMENTS, reconstruct_path, euc_dist_heuristic
+from src.algorithms.path_find_utilities import WALL, MOVEMENTS, reconstruct_path, euc_dist_heuristic, block
 
 
 def astar(graph, start, end, dijkstra):
@@ -41,18 +41,10 @@ def astar(graph, start, end, dijkstra):
         iterations += 1
         close_set.add(current)
         for i, j in MOVEMENTS:
+            if block(current[0],current[1], i, j, graph):
+                continue
             neighbor = current[0] + i, current[1] + j
             tentative_g_score = g_score[current] + 1
-
-            # Out of bounds conditions and wall check
-            if 0 <= neighbor[0] < len(graph):
-                if 0 <= neighbor[1] < len(graph):
-                    if graph[neighbor[0]][neighbor[1]] == WALL:
-                        continue
-                else:
-                    continue
-            else:
-                continue
 
             if neighbor in close_set and tentative_g_score >= g_score.get(neighbor, 0):
                 continue

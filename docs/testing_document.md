@@ -1,7 +1,7 @@
 # Testing document
 
 ### Unit testing and test coverage
-The application contains unit tests that can be performed by utilizing `pytest` module. The unit tests are located in [src/tests/ -folder](.src/tests).
+The application contains unit tests that can be performed by utilizing `pytest` module. The unit tests are located in [src/tests/ -folder](https://github.com/roopekole/tira-labra/tree/main/src/tests).
 
 The algorithms and the custom heap data structure are subjected to unit tests.
 
@@ -30,9 +30,17 @@ Report is generated to *coverage_html_report* directory in project root.
 Configurations are set in file [.coveragerc](.coveragerc).
 
 **Branching coverage report (27.6.2021 17:45 EET)**
+
+
 ![Coverage report](./img/coverage_report.png)
 
+### Known issues and bugs
+Failing unit tests:
+-  [TestJPS: test_jps_simple_mix_map2](https://github.com/roopekole/tira-labra/blob/2a700b980c96c0441c30abb8106266d0b2908acb/src/tests/jps_test.py#L18)
+
+
 ### Performance test
+
 The comparable performance of the algorithms can be analysed by the user by running the application on different parametric selections.
 
 Here are a few examples:

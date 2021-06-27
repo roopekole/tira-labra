@@ -58,19 +58,13 @@ def block(current_x, current_y, direction_x, direction_y, graph):
             direction) is out of bounds or an obstacle (wall).
 
     """
-    if current_x + direction_x < 0 or current_x + direction_x >= len(graph):
-        return True
-    if current_y + direction_y < 0 or current_y + direction_y >= len(graph):
-        return True
-    if direction_x != 0 and direction_y != 0:
+    new_x = current_x + direction_x
+    new_y = current_y + direction_y
 
-        if graph[current_x + direction_x][current_y + direction_y] == WALL:
-            return True
-    else:
-        if direction_x != 0:
-            if graph[current_x + direction_x][current_y] == WALL:
-                return True
-        else:
-            if graph[current_x][current_y + direction_y] == WALL:
-                return True
+    if new_x < 0 or new_x >= len(graph) or new_y < 0 or new_y >= len(graph):
+        return True
+
+    if graph[new_x][new_y] == WALL:
+        return True
+
     return False
