@@ -1,0 +1,6 @@
+[run]
+source = src
+omit = src/__init__.py, src/data_structures/__init__.py, src/forms.py, src/tests/**, src/utilities/**, src/views.py, src/algorithms/driver_code.py, src/algorithms/__init__.py
+
+[html]
+directory = coverage_html_report

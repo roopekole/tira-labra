@@ -2,6 +2,7 @@
 import urllib
 import zipfile
 
+
 def process_map(map):
     download_and_unzip(map)
     path = "maps/" + map
@@ -9,6 +10,7 @@ def process_map(map):
         # Unnecessary metadata on first four rows will be omitted
         data = map_file.read()
     return make_nested_list(data)
+
 
 def download_and_unzip(map):
     url = "https://movingai.com/benchmarks/street/" + map + ".zip"

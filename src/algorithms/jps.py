@@ -25,10 +25,9 @@ def jps(graph, start, end):
     g_score = {start: 0}
     f_score = {start: euc_dist_heuristic(start, end)}
 
-    #heapq.heappush(open_set, (f_score[start], start))
     open_set.push((f_score[start], start))
 
-    while open_set:
+    while open_set.size > -1:
         current = open_set.pop()[1]
         if current == end:
             path = reconstruct_path(start, came_from, current)
@@ -38,7 +37,8 @@ def jps(graph, start, end):
         iterations += 1
         close_set.add(current)
 
-        successors = get_successors(graph, current[0], current[1], came_from, end)
+        successors = get_successors(
+            graph, current[0], current[1], came_from, end)
 
         for successor in successors:
             jump_point = successor
@@ -46,13 +46,15 @@ def jps(graph, start, end):
             if jump_point in close_set and tentative_g_score >= g_score.get(jump_point, 0):
                 continue
 
-            tentative_g_score = g_score[current] + euc_dist_heuristic(current, jump_point)
+            tentative_g_score = g_score[current] + \
+                euc_dist_heuristic(current, jump_point)
 
             # Part of the cheapest path. Record the precedence and push the jump point to queue
             if tentative_g_score < g_score.get(jump_point, 0) or jump_point not in [jp[1] for jp in open_set.heap]:
                 came_from[jump_point] = current
                 g_score[jump_point] = tentative_g_score
-                f_score[jump_point] = tentative_g_score + euc_dist_heuristic(jump_point, end)
+                f_score[jump_point] = tentative_g_score + \
+                    euc_dist_heuristic(jump_point, end)
                 open_set.push((f_score[jump_point], jump_point))
 
 
@@ -69,12 +71,19 @@ def get_full_path(path):
 
     for i in range(len(path)):
         if i < len(path) - 1:
-            direction = get_direction(path[i+1][0], path[i+1][1],path[i][0], path[i][1])
-            skipped_point = path[i][0] + direction[0], path[i][1] + direction[1]
+            direction = get_direction(
+                path[i+1][0], path[i+1][1], path[i][0], path[i][1])
+            skipped_point = path[i][0] + \
+                direction[0], path[i][1] + direction[1]
 
             while skipped_point != path[i+1]:
                 full_path.append(skipped_point)
-                skipped_point = skipped_point[0] + direction[0], skipped_point[1] + direction[1]
+                skipped_point = skipped_point[0] + \
+                    direction[0], skipped_point[1] + direction[1]
+
+            if path[i+1] != path[-1]:
+                full_path.append(path[i+1])
+
         else:
             full_path.append(skipped_point)
 
@@ -93,8 +102,10 @@ def get_direction(current_x, current_y, previous_x, previous_y):
     Returns: (i,j) direction between the two x,y coordinates. i,j in [-1,0,1]
 
     """
-    direction_x = bool(current_x - previous_x > 0) - bool(current_x - previous_x < 0)
-    direction_y = bool(current_y - previous_y > 0) - bool(current_y - previous_y < 0)
+    direction_x = bool(current_x - previous_x > 0) - \
+        bool(current_x - previous_x < 0)
+    direction_y = bool(current_y - previous_y > 0) - \
+        bool(current_y - previous_y < 0)
 
     return direction_x, direction_y
 
@@ -112,32 +123,30 @@ def get_neighbors(current_x, current_y, parent, graph):
 
     """
     neighbors = []
-    if type(parent) != tuple:
+    if type(parent) == int:
         for i, j in MOVEMENTS:
             if not block(current_x, current_y, i, j, graph):
                 neighbors.append((current_x + i, current_y + j))
-
         return neighbors
-    direction_x, direction_y = get_direction(current_x, current_y, parent[0], parent[1])
+
+    direction_x, direction_y = get_direction(
+        current_x, current_y, parent[0], parent[1])
 
     if direction_x != 0 and direction_y != 0:
+        if block(current_x, current_y, -direction_x, 0, graph) and not block(
+            current_x, current_y, 0, direction_y, graph):
+            neighbors.append((current_x - direction_x, current_y + direction_y))
+        if block(current_x, current_y, 0, -direction_y, graph) and not block(
+            current_x, current_y, direction_x, 0, graph):
+            neighbors.append((current_x + direction_x, current_y - direction_y))
         if not block(current_x, current_y, 0, direction_y, graph):
             neighbors.append((current_x, current_y + direction_y))
         if not block(current_x, current_y, direction_x, 0, graph):
             neighbors.append((current_x + direction_x, current_y))
-        if (
-            not block(current_x, current_y, 0, direction_y, graph)
+        if (not block(current_x, current_y, 0, direction_y, graph)
             or not block(current_x, current_y, direction_x, 0, graph)
-        ) and not block(current_x, current_y, direction_x, direction_y, graph):
+            ) and not block(current_x, current_y, direction_x, direction_y, graph):
             neighbors.append((current_x + direction_x, current_y + direction_y))
-        if block(current_x, current_y, -direction_x, 0, graph) and not block(
-            current_x, current_y, 0, direction_y, graph
-        ):
-            neighbors.append((current_x - direction_x, current_y + direction_y))
-        if block(current_x, current_y, 0, -direction_y, graph) and not block(
-            current_x, current_y, direction_x, 0, graph
-        ):
-            neighbors.append((current_x + direction_x, current_y - direction_y))
 
     else:
         if direction_x == 0:
@@ -174,13 +183,15 @@ def get_successors(graph, current_x, current_y, came_from, goal):
 
     """
     successors = []
-    neighbours = get_neighbors(current_x, current_y, came_from.get((current_x, current_y), 0), graph)
+    neighbors = get_neighbors(current_x, current_y, came_from.get(
+        (current_x, current_y), 0), graph)
 
-    for n in neighbours:
-        direction_x = n[0] - current_x
-        direction_y = n[1] - current_y
+    for neighbor in neighbors:
+        direction_x = neighbor[0] - current_x
+        direction_y = neighbor[1] - current_y
 
-        jump_point = jump(current_x, current_y, direction_x, direction_y, graph, goal)
+        jump_point = jump(current_x, current_y, direction_x,
+                          direction_y, graph, goal)
 
         if jump_point is not None:
             successors.append(jump_point)
@@ -204,7 +215,8 @@ def jump(current_x, current_y, direction_x, direction_y, graph, end):
     if direction_x != 0 and direction_y != 0:
         while True:
             if (
-                not block(valid_new_x, valid_new_y, -direction_x, direction_y, graph)
+                not block(valid_new_x, valid_new_y, -
+                          direction_x, direction_y, graph)
                 and block(valid_new_x, valid_new_y, -direction_x, 0, graph)
                 or not block(valid_new_x, valid_new_y, direction_x, -direction_y, graph)
                 and block(valid_new_x, valid_new_y, 0, -direction_y, graph)

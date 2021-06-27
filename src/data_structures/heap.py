@@ -4,6 +4,7 @@ class Heap:
     Custom min heap implementation of the priority queue. This data structure is used in the project to
     replace python module heapq. Allows for pushing and popping.
     """
+
     def __init__(self):
         self.heap = []
         self.size = -1
@@ -28,6 +29,9 @@ class Heap:
         Returns: The minimum value in the priority queue
 
         """
+        if self.size == -1:
+            return None
+
         value = self.heap[0]
 
         self.heap[0] = self.heap[self.size]
@@ -66,8 +70,10 @@ class Heap:
         while True:
             index_value = self.heap[index]
 
-            l_leaf_index, l_leaf_value = self.get_children(index, index_value, 1)
-            r_leaf_index, r_child_value = self.get_children(index, index_value, 2)
+            l_leaf_index, l_leaf_value = self.get_children(
+                index, index_value, 1)
+            r_leaf_index, r_child_value = self.get_children(
+                index, index_value, 2)
 
             if index_value <= l_leaf_value and index_value <= r_child_value:
                 break
@@ -113,4 +119,3 @@ class Heap:
             return None, default_value
 
         return child_index, self.heap[child_index]
-    

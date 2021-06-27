@@ -6,3 +6,4 @@ maps/
 src/tests/.coverage
 *.pyc
 .cache/
+coverage_html_report/

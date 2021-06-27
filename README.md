@@ -98,9 +98,9 @@ coverage report -m
 
 
 
-Report is generated to *htmlcov* directory. 
+Report is generated to *coverage_html_report* directory. 
 
-Configurations are set in file [.coveragerc](https://github.com/roopekole/ohte-harjoitustyo/blob/master/app/.coveragerc).
+Configurations are set in file [.coveragerc](.coveragerc).
 
 ### Code quality analysis (PyLint)
 
@@ -111,4 +111,4 @@ pylint src
 
 ```
 
-2. Change configurations by altering
+2. Change configurations by altering the [.pylintrc](.pylintrc) file.

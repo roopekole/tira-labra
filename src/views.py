@@ -5,6 +5,7 @@ from src.forms import MapForm
 from src.utilities import movingai_parser, process_map_file
 from src.algorithms import a_star, jps
 
+
 @app.route("/", methods=["GET"])
 def index(error=None):
     """
@@ -37,7 +38,6 @@ def process_selected_map():
 
     map_id = request.form["map_select"]
 
-
     map_data = process_map_file.process_map(map_id)
     map_data = map_data[4:260]
 
@@ -47,10 +47,10 @@ def process_selected_map():
         error += "One of the coordinates missing"
         return index(error)
 
-    if map_data[x_start][y_start] == "@":
+    if map_data[y_start][x_start] == "@":
         error += "Bad start selection. "
 
-    if map_data[x_end][y_end] == "@":
+    if map_data[y_end][x_end] == "@":
         error += "Bad end selection."
 
     if error != "":
@@ -59,24 +59,25 @@ def process_selected_map():
     algorithm_results = {}
 
     if form.jps.data:
-        algorithm_results["JPS"] = jps.jps(map_data, (y_start,x_start), (y_end,x_end))
+        algorithm_results["JPS"] = jps.jps(
+            map_data, (y_start, x_start), (y_end, x_end))
 
     if form.a_star.data:
-        algorithm_results["A*"] = a_star.astar(map_data, (y_start,x_start), (y_end,x_end), 1)
+        algorithm_results["A*"] = a_star.astar(
+            map_data, (y_start, x_start), (y_end, x_end), 1)
 
     if form.dijkstra.data:
-        algorithm_results["Dijkstra"] = a_star.astar(map_data, (y_start,x_start), (y_end,x_end), 0)
+        algorithm_results["Dijkstra"] = a_star.astar(
+            map_data, (y_start, x_start), (y_end, x_end), 0)
 
     if not algorithm_results:
         error += "No algorithm was selected."
         return index(error)
 
-
     canvas_map = "background:url(https://movingai.com/benchmarks/street/" + \
                  map_id.replace(".map", ".png") + ")"
 
-
     return render_template("results.html", route=list(algorithm_results.values())[0][0], canvas_map=canvas_map,
-                           algorithms=algorithm_results, x_start = x_start,
-                           y_start = y_start, x_end = x_end,
-                           y_end = y_end)
+                           algorithms=algorithm_results, x_start=x_start,
+                           y_start=y_start, x_end=x_end,
+                           y_end=y_end)

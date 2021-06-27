@@ -7,12 +7,12 @@ MOVEMENTS = [(1,  1),
              (0, -1),
              (1, -1),
              (-1, 1),
-             (-1,-1),
+             (-1, -1),
              (1,  0),
              (-1, 0)]
 
 
-def reconstruct_path(start,came_from,current):
+def reconstruct_path(start, came_from, current):
     """
 
     Args:
@@ -63,8 +63,7 @@ def block(current_x, current_y, direction_x, direction_y, graph):
     if current_y + direction_y < 0 or current_y + direction_y >= len(graph):
         return True
     if direction_x != 0 and direction_y != 0:
-        if graph[current_x + direction_x][current_y] == WALL and graph[current_x][current_y + direction_y] == WALL:
-            return True
+
         if graph[current_x + direction_x][current_y + direction_y] == WALL:
             return True
     else:

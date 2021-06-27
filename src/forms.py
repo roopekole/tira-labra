@@ -15,9 +15,12 @@ class MapForm(FlaskForm):
                          render_kw={"id": "end_x", "class": "form-control"})
     end_y = IntegerField('Y:', [validators.number_range(min=0, max=256)],
                          render_kw={"id": "end_y", "class": "form-control"})
-    jps = BooleanField("JPS", render_kw={"class":"form-check-input","checked type":"checkbox"})
-    a_star = BooleanField("A*", render_kw={"class":"form-check-input","checked type":"checkbox"})
-    dijkstra = BooleanField("Dijkstra", render_kw={"class":"form-check-input","checked type":"checkbox"})
+    jps = BooleanField("JPS", render_kw={
+                        "class": "form-check-input", "checked type": "checkbox"})
+    a_star = BooleanField(
+        "A*", render_kw={"class": "form-check-input", "checked type": "checkbox"})
+    dijkstra = BooleanField("Dijkstra", render_kw={
+                        "class": "form-check-input", "checked type": "checkbox"})
 
     class Meta:
         """

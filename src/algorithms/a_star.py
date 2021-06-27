@@ -5,7 +5,6 @@ from src.algorithms.path_find_utilities import WALL, MOVEMENTS, reconstruct_path
 
 
 def astar(graph, start, end, dijkstra):
-
     """
 
     Args:
@@ -29,7 +28,7 @@ def astar(graph, start, end, dijkstra):
     open_set.push((f_score[start], start))
     close_set = set()
 
-    while open_set:
+    while open_set.size > -1:
         current = open_set.pop()[1]
 
         # Goal found - collect and return the path
@@ -43,7 +42,7 @@ def astar(graph, start, end, dijkstra):
         close_set.add(current)
         for i, j in MOVEMENTS:
             neighbor = current[0] + i, current[1] + j
-            tentative_g_score = g_score[current] + dijkstra * euc_dist_heuristic(current, neighbor)
+            tentative_g_score = g_score[current] + 1
 
             # Out of bounds conditions and wall check
             if 0 <= neighbor[0] < len(graph):
@@ -62,5 +61,6 @@ def astar(graph, start, end, dijkstra):
             if tentative_g_score < g_score.get(neighbor, 0) or neighbor not in [nb[1] for nb in open_set.heap]:
                 came_from[neighbor] = current
                 g_score[neighbor] = tentative_g_score
-                f_score[neighbor] = tentative_g_score + dijkstra * euc_dist_heuristic(neighbor, end)
+                f_score[neighbor] = tentative_g_score + \
+                    dijkstra * euc_dist_heuristic(neighbor, end)
                 open_set.push((f_score[neighbor], neighbor))

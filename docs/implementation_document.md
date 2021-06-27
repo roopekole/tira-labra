@@ -35,6 +35,7 @@ Binary Heap = O(V)
 
 
 ### Performance analysis
+See [Testing document](./testing_document.md)
 
 ### Known issues and development ideas
 Knowns issues and development ideas are listed in the [issues](https://github.com/roopekole/tira-labra/issues) of the repository.
