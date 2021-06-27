@@ -5,7 +5,7 @@ This documents specifies the high level requirements of the implemented program 
 - Project language: English (mutta tekijä ymmärtää kyllä suomeakin)
 
 ### Algorithms
-The purpose of the program is to compare different path finding algorithms on two dimensional map. The project assumes that maps are uniform cost maps (no down or uphills etc.) with travelable surface and walls. The program will compare *Dijkstra's*, *A** and Jump Point Search algortihms. 
+The purpose of the program is to compare different path finding algorithms on two dimensional map. The project assumes that maps are uniform cost maps (no down or uphills etc.) with travelable surface and walls. The program will compare *Dijkstra's*, *A** and *Jump Point Search* algortihms. 
 
 ### Inputs
 The program will utilize the maps available in the Moving AI lab. The program will scrape the website and provide full list of (256x256 px) maps for user to select. This project scope does not allow configurability of the input (i.e. changing the scrapable web endpoint). However, it's relatively easy to adjust the parts in the source code that refer to the maps and algorithms may be run with any two dimensional map that does not violate the uniform cost assumption.
