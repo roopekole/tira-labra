@@ -63,6 +63,7 @@ flask run
 
 You may also run the algorithms without the Flask UI. There's a simple driver code `driver_code.py` in module `src.algorithms` that allow you to verify the results on the input map defined in the driver code.
 
+
 ### Unit testing and test coverage
 
 1. Perform unit testing:
@@ -102,7 +103,9 @@ Report is generated to *coverage_html_report* directory.
 
 Configurations are set in file [.coveragerc](.coveragerc).
 
+
 ### Code quality analysis (PyLint)
+
 
 1. Perform code quality analysis for source code:
 ```bash

@@ -38,23 +38,23 @@ The comparable performance of the algorithms can be analysed by the user by runn
 Here are a few examples:
 
 **Example 1**
-Map: Berlin 0
-Start: X = 54, Y = 66
-End: X = 207, Y = 177
+- Map: Berlin 0
+- Start: X = 54, Y = 66
+- End: X = 207, Y = 177
 
 ![Example 1](./img/example1.png)
 
 **Example 2**
-Map: Denver 1
-Start: X = 44, Y = 52
-End: X = 147, Y = 152
+- Map: Denver 1
+- Start: X = 44, Y = 52
+- End: X = 147, Y = 152
 
 ![Example 2](./img/example2.png)
 
 **Example 3**
-Map: Milan 2
-Start: X = 19, Y = 245
-End: X = 180, Y = 36
+- Map: Milan 2
+- Start: X = 19, Y = 245
+- End: X = 180, Y = 36
 
-![Example 2](./img/example3.png)
+![Example 3](./img/example3.png)
 
